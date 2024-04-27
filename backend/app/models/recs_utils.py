@@ -6,8 +6,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def data_processing(df):
-    for column in df.columns:
-        df[column] = df[column].str.lower()
 
     df = df.astype('object')
     df = df.fillna(' ')
@@ -36,21 +34,6 @@ def cosine_distances_vac(df, column_name, vac_item, name_new_col):
 def skills_in_text(skills_array, text):
     result_array = []
     for skill in skills_array:
-        if skill in text:
+        if skill.lower() in text.lower():
             result_array.append(skill)
     return result_array
-
-
-def json_parse_skills(json_data):
-    tmp_array = []
-    for i in json_data['Технологии, инструменты'].unique():
-        tmp_array.append(i.split(','))
-    skills_array = []
-    for i in tmp_array:
-        for j in i:
-            skills_array.append(j)
-
-    for i in range(len(skills_array)):
-        skills_array[i] = skills_array[i].strip()
-    skills_array = list(set(skills_array))
-    return skills_array

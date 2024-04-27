@@ -13,3 +13,5 @@ regex==2024.4.16
 scikit-learn==1.4.2
 scipy==1.13.0
 threadpoolctl==3.4.0
+requests==2.31.0
+fake_useragent==1.5.1
