@@ -6,8 +6,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def data_processing(df):
-    for column in df.columns:
-        df[column] = df[column].str.lower()
 
     df = df.astype('object')
     df = df.fillna(' ')
@@ -32,3 +30,10 @@ def cosine_distances_vac(df, column_name, vac_item, name_new_col):
 
     df_with_distances = pd.concat([df, cosine_distances_series], axis=1)
     return df_with_distances
+
+def skills_in_text(skills_array, text):
+    result_array = []
+    for skill in skills_array:
+        if skill.lower() in text.lower():
+            result_array.append(skill)
+    return result_array
